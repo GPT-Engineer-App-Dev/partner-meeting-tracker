@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -9,15 +9,22 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const DesignPartners = () => {
-  const [partners, setPartners] = useState([
-    { id: 1, name: "Acme Inc", email: "contact@acme.com", phone: "123-456-7890", description: "Leading tech innovator", avatar: "/placeholder.svg" },
-    { id: 2, name: "TechCorp", email: "info@techcorp.com", phone: "098-765-4321", description: "Cutting-edge solutions provider", avatar: "/placeholder.svg" },
-  ]);
-
+  const [partners, setPartners] = useState([]);
   const [editingPartner, setEditingPartner] = useState(null);
 
+  useEffect(() => {
+    const storedPartners = localStorage.getItem('designPartners');
+    if (storedPartners) {
+      setPartners(JSON.parse(storedPartners));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('designPartners', JSON.stringify(partners));
+  }, [partners]);
+
   const addPartner = (partner) => {
-    setPartners([...partners, { ...partner, id: partners.length + 1 }]);
+    setPartners([...partners, { ...partner, id: Date.now() }]);
   };
 
   const updatePartner = (updatedPartner) => {
