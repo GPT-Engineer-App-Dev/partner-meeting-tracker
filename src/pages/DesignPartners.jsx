@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -7,33 +7,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { usePartners } from "@/contexts/PartnerContext";
 
 const DesignPartners = () => {
-  const [partners, setPartners] = useState([]);
+  const { partners, addPartner, updatePartner, deletePartner } = usePartners();
   const [editingPartner, setEditingPartner] = useState(null);
-
-  useEffect(() => {
-    const storedPartners = localStorage.getItem('designPartners');
-    if (storedPartners) {
-      setPartners(JSON.parse(storedPartners));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('designPartners', JSON.stringify(partners));
-  }, [partners]);
-
-  const addPartner = (partner) => {
-    setPartners([...partners, { ...partner, id: Date.now() }]);
-  };
-
-  const updatePartner = (updatedPartner) => {
-    setPartners(partners.map(p => p.id === updatedPartner.id ? updatedPartner : p));
-  };
-
-  const deletePartner = (id) => {
-    setPartners(partners.filter(p => p.id !== id));
-  };
 
   return (
     <div className="container mx-auto p-4">
