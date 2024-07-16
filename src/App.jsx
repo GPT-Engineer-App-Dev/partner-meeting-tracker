@@ -6,6 +6,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./layouts/navbar";
 import DesignPartners from "./pages/DesignPartners";
 import Schedule from "./pages/Schedule";
+import { PartnerProvider } from "./contexts/PartnerContext";
+
 const queryClient = new QueryClient();
 
 export const navItems = [
@@ -26,14 +28,16 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<DesignPartners />} />
-              <Route path="schedule" element={<Schedule />} />
-            </Route>
-          </Routes>
-        </Router>
+        <PartnerProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<DesignPartners />} />
+                <Route path="schedule" element={<Schedule />} />
+              </Route>
+            </Routes>
+          </Router>
+        </PartnerProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
