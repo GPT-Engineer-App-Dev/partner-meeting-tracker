@@ -6,17 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
+import { usePartners } from "@/contexts/PartnerContext";
 
 const Schedule = () => {
+  const { partners } = usePartners();
   const [meetings, setMeetings] = useState([
     { id: 1, partnerId: 1, partnerName: "Acme Inc", date: new Date(2024, 2, 15) },
     { id: 2, partnerId: 2, partnerName: "TechCorp", date: new Date(2024, 2, 20) },
   ]);
-
-  const partners = [
-    { id: 1, name: "Acme Inc" },
-    { id: 2, name: "TechCorp" },
-  ];
 
   const addMeeting = (meeting) => {
     setMeetings([...meetings, { ...meeting, id: meetings.length + 1 }]);
