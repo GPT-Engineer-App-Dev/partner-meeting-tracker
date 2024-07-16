@@ -47,7 +47,7 @@ const MeetingCard = ({ meeting, onDelete }) => (
       <div>
         <p><strong>Date:</strong> {format(meeting.date, "MMMM d, yyyy")}</p>
       </div>
-      <Button variant="destructive" className="bg-red-500 hover:bg-red-600 text-white" onClick={() => onDelete(meeting.id)}>Delete</Button>
+      <Button variant="destructive" onClick={() => onDelete(meeting.id)}>Delete</Button>
     </CardContent>
   </Card>
 );
@@ -70,7 +70,7 @@ const AddMeetingDialog = ({ partners, onAddMeeting }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-blue-500 hover:bg-blue-600 text-white">Schedule Meeting</Button>
+        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Schedule Meeting</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -99,7 +99,7 @@ const AddMeetingDialog = ({ partners, onAddMeeting }) => {
               className="rounded-md border"
             />
           </div>
-          <Button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-600 text-white">Add Meeting</Button>
+          <Button onClick={handleSubmit} className="bg-primary hover:bg-primary/90 text-primary-foreground">Add Meeting</Button>
         </div>
       </DialogContent>
     </Dialog>

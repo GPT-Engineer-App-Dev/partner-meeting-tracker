@@ -60,10 +60,10 @@ const PartnerCard = ({ partner, onEdit, onDelete }) => (
       <p className="mt-2">{partner.description}</p>
     </CardContent>
     <CardFooter className="flex justify-between">
-      <Button variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-100" onClick={() => onEdit(partner)}>Edit</Button>
+      <Button variant="outline" className="border-primary text-primary hover:bg-primary/10" onClick={() => onEdit(partner)}>Edit</Button>
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" className="bg-red-500 hover:bg-red-600 text-white">Delete</Button>
+          <Button variant="destructive">Delete</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -74,7 +74,7 @@ const PartnerCard = ({ partner, onEdit, onDelete }) => (
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel className="bg-gray-200 hover:bg-gray-300 text-gray-800">Cancel</AlertDialogCancel>
-            <AlertDialogAction className="bg-blue-500 hover:bg-blue-600 text-white" onClick={() => onDelete(partner.id)}>Delete</AlertDialogAction>
+            <AlertDialogAction className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => onDelete(partner.id)}>Delete</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
@@ -113,7 +113,7 @@ const PartnerForm = ({ partner, onSubmit, submitLabel }) => {
         <Label htmlFor="description">Description</Label>
         <Textarea id="description" name="description" value={formData.description} onChange={handleChange} required />
       </div>
-      <Button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white">{submitLabel}</Button>
+      <Button type="submit" className="bg-primary hover:bg-primary/90 text-primary-foreground">{submitLabel}</Button>
     </form>
   );
 };
@@ -121,7 +121,7 @@ const PartnerForm = ({ partner, onSubmit, submitLabel }) => {
 const AddPartnerDialog = ({ onAddPartner }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <Button className="bg-blue-500 hover:bg-blue-600 text-white">Add New Partner</Button>
+      <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Add New Partner</Button>
     </DialogTrigger>
     <DialogContent>
       <DialogHeader>
