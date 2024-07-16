@@ -1,10 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-3xl">Your Blank Canvas</h1>
-      <p>Chat with the agent to start making edits.</p>
+    <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
+      <h1 className="text-3xl font-bold">Welcome to Our Site</h1>
+      <p className="text-lg">Here are some blue buttons for you:</p>
+      <div className="space-x-4">
+        <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          Click Me
+        </Button>
+        <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          Press Me
+        </Button>
+        <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+          Tap Me
+        </Button>
+      </div>
     </div>
   );
 };
